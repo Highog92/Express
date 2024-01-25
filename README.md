@@ -1,3 +1,3 @@
 # Express
-
-Hvordan man får adgang til mysql dumps
+Opsætning af en database
+Hvordan man får adgang til et api via Mysql
