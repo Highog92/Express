@@ -1,4 +1,7 @@
 // https://github.com/Webudvikler-TechCollege/DSI/blob/main/Guides/Backend/3.0%20-%20NODEJS%20-%20Express%20Router.md
+
+// Skriv node index.js i terminalen
+
 import dotenv from 'dotenv'
 import mysql from 'mysql2'
 import express from "express"
@@ -16,13 +19,19 @@ app.get("/", (req, res) => {
 })
 
 // Contact route
-app.get("/contact", (req, res) => {
-    res.send(`<p>hej hej</p>`)
+app.get("/api", (req, res) => {
+    db.query(`SELECT id,title FROM song`, (error, result) => {
+        if (error) {
+            console.error(error)
+        } else {
+            res.json(result)
+        }
+    })
 })
 
 // Start server listening
 app.listen(8081, () => {
-    console.log("ser started on port 8081");
+    console.log("server started on port 8081");
 }
 )
 
@@ -31,10 +40,3 @@ app.use((req, res) => {
     res.status(404).send("page not found")
 })
 
-db.query(`SELECT id,title FROM song`, (error, result) => {
-	if(error) {
-		console.error(error)
-	} else {
-		console.log(result)
-	}
-})
